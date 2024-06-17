@@ -1,7 +1,5 @@
-
-##Overclock Netgear WNR3500L v2 con Tomato
-
-E’ possibile overcloccare la CPU/RAM/BUS di un router con tomato, nel caso del chipset Broadcom del router Netgear WNR3500L v2 i valori accettati sono questi
+It is possible to overclock CPU/RAM/BUS of a router with the Tomato firmware.
+In routers equipped with Broadcom chipsets, like the Netgear WNR3500L V2, the allowed clock values are the following:
 ```
     static uint32 BCMINITDATA(pll20mhz_table)[][8] = {
                        /* cpu, ddr, axi, pllctl12,  pllctl13,   pllctl14,   pllctl15,  |pllctl16 */
@@ -67,11 +65,11 @@ E’ possibile overcloccare la CPU/RAM/BUS di un router con tomato, nel caso del
                        {0}
                };
 ```
-Per vedere i valori di default basta dare:
+To see the actual default values, log into the router shell and type:
 ```
     nvram get clkfreq
 ```
-che dovrebbe restituire la terna (480,160,80). Supponiamo di voler overcloccare alla successiva terna che ha senso (500,166,83), tutto quello che bisogna fare è dare:
+which should output the triplet (480,160,80). To overclock to the next allowed triplet (500,166,83), simply type:
 ```
     nvram set clkfreq=500,166,83
 
@@ -79,3 +77,4 @@ che dovrebbe restituire la terna (480,160,80). Supponiamo di voler overcloccare 
 
     reboot
 ```
+Use with caution.
